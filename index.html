@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengumuman Kelulusan - SMA Negeri 1 Pasaribu Tobing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ecf0f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 500px;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin: 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Selamat dan Sukses!</h1>
+    <p>Selamat kepada siswa/i SMA Negeri 1 Pasaribu Tobing yang telah menyelesaikan pendidikan selama 3 tahun.</p>
+    <p>Silakan masukkan NISN Anda untuk melihat hasil kelulusan. Hasil akan tersedia mulai pukul 15.00 WIB.</p>
+    <input type="text" id="nisn" placeholder="Masukkan NISN Anda">
+    <br>
+    <button onclick="cekKelulusan()">Lihat Hasil</button>
+  </div>
+  <script>
+    function cekKelulusan() {
+      const nisn = document.getElementById('nisn').value;
+      const now = new Date();
+      const bukaJam = new Date();
+      bukaJam.setHours(15, 0, 0);
+      if (now < bukaJam) {
+        alert("Hasil kelulusan baru bisa diakses pukul 15.00 WIB.");
+        return;
+      }
+      localStorage.setItem("nisn", nisn);
+      window.location.href = "hasil.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hasil Kelulusan - SMA Negeri 1 Pasaribu Tobing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 40px 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .status {
+      margin-top: 30px;
+      font-size: 18px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .lulus {
+      background-color: #dff0d8;
+      color: #3c763d;
+    }
+    .tidak-lulus {
+      background-color: #f2dede;
+      color: #a94442;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hasil Kelulusan</h1>
+    <div id="hasil"></div>
+  </div>
+
+  <script>
+    const dataKelulusan = [
+      { "nisn": "0072733610", "nama": "Anis Habeahan", "status": "LULUS" },
+      { "nisn": "0051645494", "nama": "Benediktus Nainggolan", "status": "LULUS" },
+      { "nisn": "0071821706", "nama": "Chelsea Habeahan", "status": "LULUS" },
+      { "nisn": "0071827347", "nama": "Cintia Simamora", "status": "LULUS" },
+      { "nisn": "0072928016", "nama": "Daniel Pakpahan", "status": "LULUS" },
+      { "nisn": "0053621803", "nama": "Darman Manurung", "status": "LULUS" },
+      { "nisn": "0051543969", "nama": "Debora Silaban", "status": "LULUS" },
+      { "nisn": "0072790654", "nama": "Delvi Simanjuntak", "status": "LULUS" },
+      { "nisn": "0051588820", "nama": "Derma Sihotang", "status": "LULUS" },
+      { "nisn": "0051558054", "nama": "Diana Sihombing", "status": "LULUS" }
+    ];
+
+    const nisnInput = localStorage.getItem("nisn");
+    const hasilDiv = document.getElementById("hasil");
+
+    if (!nisnInput) {
+      hasilDiv.innerHTML = `<p>Data tidak ditemukan. Silakan login ulang.</p>`;
+    } else {
+      const hasil = dataKelulusan.find(siswa => siswa.nisn === nisnInput);
+
+      if (hasil) {
+        const statusClass = hasil.status === "LULUS" ? "lulus" : "tidak-lulus";
+        hasilDiv.innerHTML = `
+          <div class="status ${statusClass}">
+            <p><strong>Nama:</strong> ${hasil.nama}</p>
+            <p><strong>Status Kelulusan:</strong> ${hasil.status}</p>
+          </div>
+          <p>📄 Silakan ambil Surat Keterangan Lulus di Ruang Administrasi/TU dengan berpakaian <strong>Rapi dan Sopan</strong>.</p>
+        `;
+      } else {
+        hasilDiv.innerHTML = `<p>NISN tidak ditemukan. Periksa kembali atau hubungi wali kelas.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
